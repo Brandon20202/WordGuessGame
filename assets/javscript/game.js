@@ -2,37 +2,36 @@ var wordguess=["Jordan", "Ashley", "Leon", "Amanda", "Sharon", "Leslie", "Deon",
 "Brandon", "Brooke", "Charles", "Franklin", 
 "George", "Henry", "Issac", "Julie", "Manny", "Norman", "Pam"];
 
-var lives=12;
+var lives=20;
 var wins=0;
 var answer=[];
 var displayword=[];
 var chancesRight=[];
 var loss=0;
-//choose random words from array
+
 function chooseword(){
-    var word= wordguess[Math.floor(Math.random() * words.length)];
-    return word;
+    var word= Math.floor(Math.random() * wordguess.length);
+    var key=word.wordguess;
+    return key;
 }
 
-//gives blanks for each word
-function blanks (word){
-    for (var i=0; i <word.length; i++){
+
+function blanks (){
+    for (var i=0; i <wordguess.length; i++){
         var result = "_";
         result++;
         
     }
 
     document.getElementById("current-word-div").innerHTML= result;
-    return result;
 }
 
 function reset(){
-    lives=12;
+    lives=20;
     wins=0;
     loss=0;
     displayword=[];
     chancesRight=[];
-    var answer=[];
     document.getElementById("letters-guessed-div").innerHTML="";
 }
 
@@ -40,10 +39,9 @@ window.onload = function(){
     var life = document.getElementById("lives-remaining-div");
     life.innerHTML=lives;
 
-    //use the choose word function to save random word
-    var solve= this.chooseword();
-    //run blanks
-    this.blanks(solve);
+   
+    
+    blanks();
 
     if(life<=0){
         alert("you lose");
@@ -60,13 +58,49 @@ window.onload = function(){
                 loss++
                 document.getElementById("loss-div").innerHTML=loss
                 reset();
-                blanks(word);
+                blanks();
             }
         }
 
         var userGuess=event.key;
 
-        if(attempts.includes(userGuess)){
+        if(chancesRight.includes(userGuess)){
+            alert("This letter has already been used");
+
+
+        }
+        chancesRight.push(userGuess);
+        var letterRight=wordguess.indexOf(userGuess);
+
+        if(letterRight < 0){
+            lives--;
+            document.getElementById("letters-guessed-div").innerHTML +=userGuess;
+            document.getElementById("lives-remaining-div").innerHTML=lives;
+        }
+        if(lives==0){
+            alert=("game over!");
+            reset();
+
+        }
+        else{
+            chancesRight.push(userGuess);
+            wins++;
+            for( var i = 0; i<word.length; i++){
+                if(word.charAt(i) === userGuess){
+                    displayword+=(wordguess);
+                    document.getElementById("current-word-div").innerHTML=displayword;
+                }
+                else if(word.charAt(i) !== userGuess){
+                    displayword+="_";
+                    document.getElementById("current-word-div").innerHTML=displayword;
+                }
+                else if(word.charAt(i)===userGuess){
+                    test=displayword.replace(displayword.charAt(i), "_");
+                    document.getElementById("current-word-div").innerHTML=test;
+
+               
+                }
+            }
 
         }
     } 
