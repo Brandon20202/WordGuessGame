@@ -69,7 +69,7 @@ window.onload = function(){
 
 
         }
-        chancesRight.push(userGuess);
+      
         var letterRight=wordguess.indexOf(userGuess);
 
         if(letterRight < 0){
