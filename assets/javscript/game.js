@@ -93,10 +93,8 @@ window.onload = function(){
                 else if(word.charAt(i) !== userGuess){
                     displayword+="_";
                     document.getElementById("current-word-div").innerHTML=displayword;
-                }
-                else if(word.charAt(i)===userGuess){
-                    test=displayword.replace(displayword.charAt(i), "_");
-                    document.getElementById("current-word-div").innerHTML=test;
+                
+                
 
                
                 }
