@@ -86,6 +86,7 @@ window.onload = function(){
         if(lives==0){
             alert=("game over!");
             reset();
+            chooseword();
 
         }
         // go through a loop , it checks to see if the letter the user guess is in the word that was chosen at random or not
