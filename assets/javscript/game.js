@@ -8,14 +8,14 @@ var answer=[];
 var displayword=[];
 var chancesRight=[];
 var loss=0;
-
+//choose a word at random
 function chooseword(){
     var word= Math.floor(Math.random() * wordguess.length);
     var key=word.wordguess;
     return key;
 }
 
-
+//function to make the blanks
 function blanks (){
     for (var i=0; i <wordguess.length; i++){
         var result = "_";
@@ -25,7 +25,7 @@ function blanks (){
 
     document.getElementById("current-word-div").innerHTML= result;
 }
-
+//function to restart the game
 function reset(){
     lives=20;
     wins=0;
@@ -34,7 +34,7 @@ function reset(){
     chancesRight=[];
     document.getElementById("letters-guessed-div").innerHTML="";
 }
-
+//when the page starts up this will load
 window.onload = function(){
     var life = document.getElementById("lives-remaining-div");
     life.innerHTML=lives;
@@ -42,7 +42,7 @@ window.onload = function(){
    
     
     blanks();
-
+//if you out of life you lose
     if(life<=0){
         alert("you lose");
     }
@@ -76,12 +76,19 @@ window.onload = function(){
             lives--;
             document.getElementById("letters-guessed-div").innerHTML +=userGuess;
             document.getElementById("lives-remaining-div").innerHTML=lives;
+
         }
+        //if you out of life you lose
+        if(life<=0){
+            alert("you lose");
+            reset();
+    }
         if(lives==0){
             alert=("game over!");
             reset();
 
         }
+        // go through a loop , it checks to see if the letter the user guess is in the word that was chosen at random or not
         else{
             chancesRight.push(userGuess);
             wins++;
