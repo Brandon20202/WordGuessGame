@@ -46,7 +46,7 @@ window.onload = function(){
     if(life<=0){
         alert("you lose");
     }
-
+    //when the user presses a key and is out of lives, he lose and play again
     document.onkeyup=function(event){
         if (life <=0){
 
@@ -61,9 +61,9 @@ window.onload = function(){
                 blanks();
             }
         }
-
+        //stores the user guess
         var userGuess=event.key;
-
+        //checks to see if word is chosen already
         if(chancesRight.includes(userGuess)){
             alert("This letter has already been used");
 
@@ -71,7 +71,7 @@ window.onload = function(){
         }
       
         var letterRight=wordguess.indexOf(userGuess);
-
+        //decrease the lives if you answer wrong and adds it to html
         if(letterRight < 0){
             lives--;
             document.getElementById("letters-guessed-div").innerHTML +=userGuess;
